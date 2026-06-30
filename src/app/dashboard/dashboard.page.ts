@@ -14,8 +14,14 @@ import {
   IonCardHeader, 
   IonCardTitle, 
   IonCardSubtitle,
-  AnimationController
+  IonCardContent,
+  IonList,
+  IonItem,
+  IonLabel,
+  AnimationController 
 } from '@ionic/angular/standalone';
+
+import { ApiService } from '../services/api';
 
 @Component({
   selector: 'app-dashboard',
@@ -36,20 +42,43 @@ import {
     IonCard, 
     IonCardHeader, 
     IonCardTitle, 
-    IonCardSubtitle
+    IonCardSubtitle,
+    IonCardContent,
+    IonList,
+    IonItem,
+    IonLabel
   ]
 })
 export class DashboardPage implements OnInit, AfterViewInit {
 
   @ViewChildren(IonCard, { read: ElementRef }) tarjetas!: QueryList<ElementRef>;
 
-  constructor(private animationCtrl: AnimationController) { }
+  listaAmigos: any[] = []; 
+  errorCarga: boolean = false;
+
+  constructor(
+    private animationCtrl: AnimationController, 
+    private apiService: ApiService
+  ) { }
 
   ngOnInit() {
+    this.cargarAmigos();
   }
 
   ngAfterViewInit() {
     this.animarMenu();
+  }
+
+  cargarAmigos() {
+    this.apiService.obtenerAmigos().subscribe({
+      next: (datos: any) => {
+        this.listaAmigos = datos;
+      },
+      error: (err: any) => {
+        console.error('Fallo total de carga', err);
+        this.errorCarga = true;
+      }
+    });
   }
 
   animarMenu() {
@@ -57,7 +86,7 @@ export class DashboardPage implements OnInit, AfterViewInit {
 
     const animacionMenu = this.animationCtrl.create()
       .addElement(elementosMapeados)
-      .duration(800)
+      .duration(800) 
       .easing('ease-out') 
       .fromTo('opacity', '0', '1') 
       .fromTo('transform', 'translateY(40px)', 'translateY(0px)'); 

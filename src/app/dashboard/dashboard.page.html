@@ -40,4 +40,26 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+
+  <ion-card class="ion-margin-top menu-card">
+    <ion-card-header>
+      <ion-card-title>Amigos Conectados</ion-card-title>
+      <ion-card-subtitle>Datos desde API REST / Persistencia local</ion-card-subtitle>
+    </ion-card-header>
+    
+    <ion-list>
+      <ion-item *ngFor="let amigo of listaAmigos">
+        <ion-label>
+          <h2>{{ amigo.name }}</h2>
+          <p>Alias: {{ amigo.username }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+    
+    <ion-card-content *ngIf="errorCarga">
+      <p style="color: var(--ion-color-danger); font-weight: bold;">
+        No se pudieron cargar los datos y no hay copias locales guardadas.
+      </p>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

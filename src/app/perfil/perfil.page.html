@@ -9,8 +9,8 @@
 
 <ion-content class="ion-padding">
   <div class="perfil-header ion-text-center">
-    <ion-avatar class="avatar-central">
-      <img alt="Avatar de Invocador" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+    <ion-avatar class="avatar-central" (click)="tomarFoto()">
+      <img [src]="fotoPerfil" />
     </ion-avatar>
     <h2>Invocador Pro</h2>
     <p>Liga: Esmeralda II</p>

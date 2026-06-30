@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { 
@@ -39,9 +40,23 @@ import {
   ]
 })
 export class PerfilPage implements OnInit {
+  fotoPerfil: string = 'https://ionicframework.com/docs/img/demos/avatar.svg';
 
   notificacionesActivas: boolean = true;
   modoOscuro: boolean = false;
+
+  async tomarFoto() {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: false,
+      resultType: CameraResultType.Uri,
+      source: CameraSource.Camera 
+    });
+
+    if (image.webPath) {
+      this.fotoPerfil = image.webPath; 
+    }
+  }
 
   constructor() { }
 
