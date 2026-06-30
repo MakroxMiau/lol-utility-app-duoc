@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Mi Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="perfil-header ion-text-center">
+    <ion-avatar class="avatar-central">
+      <img alt="Avatar de Invocador" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+    </ion-avatar>
+    <h2>Invocador Pro</h2>
+    <p>Liga: Esmeralda II</p>
+  </div>
+
+  <ion-list class="ion-margin-top">
+    <ion-list-header>
+      <ion-label>Ajustes de la App</ion-label>
+    </ion-list-header>
+
+    <ion-item>
+      <ion-toggle [(ngModel)]="notificacionesActivas" justify="space-between">
+        Notificaciones de Parche
+      </ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-toggle [(ngModel)]="modoOscuro" justify="space-between" color="dark">
+        Activar Modo Oscuro
+      </ion-toggle>
+    </ion-item>
+  </ion-list>
+</ion-content>

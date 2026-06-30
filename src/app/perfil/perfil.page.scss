@@ -1,0 +1,19 @@
+.perfil-header {
+  margin-top: 20px;
+  
+  h2 {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  p {
+    color: var(--ion-color-step-500);
+    margin-top: 0;
+  }
+}
+
+.avatar-central {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+}

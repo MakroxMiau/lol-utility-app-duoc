@@ -1,0 +1,25 @@
+.bienvenida {
+  margin-bottom: 24px;
+  h2 {
+    font-weight: 700;
+    color: var(--ion-color-dark);
+  }
+  p {
+    color: var(--ion-color-step-600);
+  }
+}
+
+.menu-card {
+  margin: 8px 0;
+  border-left: 5px solid var(--ion-color-secondary);
+  --background: var(--ion-color-light);
+  
+  ion-card-title {
+    font-size: 1.3em;
+    font-weight: bold;
+  }
+}
+
+.perfil-card {
+  border-left: 5px solid var(--ion-color-tertiary);
+}

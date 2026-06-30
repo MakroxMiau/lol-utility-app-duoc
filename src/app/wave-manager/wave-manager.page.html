@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Calculadora de Oleadas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="explicacion">
+    <p>Introduce los datos actuales de la línea para calcular la estrategia de Wave Management óptima.</p>
+  </div>
+
+  <form [formGroup]="waveForm" (ngSubmit)="calcularOleada()">
+    
+    <ion-item>
+      <ion-input 
+        label="Súbditos Aliados Vivos" 
+        labelPlacement="floating" 
+        type="number" 
+        formControlName="subditosAliados">
+      </ion-input>
+    </ion-item>
+    <div *ngIf="waveForm.get('subditosAliados')?.touched && waveForm.get('subditosAliados')?.errors?.['min']" class="error-text">
+      No puedes ingresar números negativos.
+    </div>
+
+    <ion-item>
+      <ion-input 
+        label="Súbditos Enemigos Vivos" 
+        labelPlacement="floating" 
+        type="number" 
+        formControlName="subditosEnemigos">
+      </ion-input>
+    </ion-item>
+    <div *ngIf="waveForm.get('subditosEnemigos')?.touched && waveForm.get('subditosEnemigos')?.errors?.['min']" class="error-text">
+      No puedes ingresar números negativos.
+    </div>
+
+    <ion-item>
+      <ion-select label="Posición de la Oleada" labelPlacement="floating" placeholder="Selecciona ubicación" formControlName="posicionLinea">
+        <ion-select-option value="aliada">Cerca de tu torre</ion-select-option>
+        <ion-select-option value="centro">Centro del carril</ion-select-option>
+        <ion-select-option value="enemiga">Cerca de torre enemiga</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" [disabled]="waveForm.invalid" class="ion-margin-top">
+      Calcular Estrategia
+    </ion-button>
+
+  </form>
+
+  <ion-card *ngIf="resultadoAnalisis" color="light" class="ion-margin-top">
+    <ion-card-header>
+      <ion-card-title>Diagnóstico del Carril</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p style="font-size: 1.1em; color: var(--ion-color-dark);">
+        {{ resultadoAnalisis }}
+      </p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
